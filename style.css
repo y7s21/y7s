@@ -377,13 +377,13 @@ section .title::after{
     background: crimson;
 }
 .skills-content .right .html::before{
-    width: 90%;
+    width: 80%;
 }
 .skills-content .right .css::before{
     width: 60%;
 }
 .skills-content .right .js::before{
-    width: 80%;
+    width: 57%;
 }
 .skills-content .right .php::before{
     width: 50%;
@@ -398,7 +398,7 @@ section .title::after{
     width: 80%;
 }
 .skills-content .right .Python::before{
-    width: 100%;
+    width: 40%;
 }
 /* Projects section styling */
 .Projects .title::after{
@@ -810,4 +810,5 @@ section .title::after{
     color: #ccc;
     font-size: 1rem;
     margin-bottom: 1rem;
+
 }
