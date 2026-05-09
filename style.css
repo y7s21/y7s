@@ -812,3 +812,18 @@ section .title::after{
     margin-bottom: 1rem;
 
 }
+
+.github-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+.github-meta span {
+    background: #222;
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+}
