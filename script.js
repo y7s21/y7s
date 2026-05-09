@@ -210,3 +210,57 @@ $(document).ready(function() {
         $('#' + tab).addClass('active');
     });
 });
+
+async function loadGitHubProjects() {
+    const container = document.getElementById("github-projects");
+
+    if (!container) return;
+
+    try {
+        const response = await fetch("https://api.github.com/users/y7s21/repos?sort=updated&per_page=6");
+
+        if (!response.ok) {
+            throw new Error("Could not load GitHub repositories");
+        }
+
+        const repos = await response.json();
+
+        container.innerHTML = "";
+
+        repos
+            .filter(repo => !repo.fork)
+            .forEach(repo => {
+                const card = document.createElement("div");
+                card.className = "modern-card no-image";
+
+                card.innerHTML = `
+                    <div class="modern-card-body">
+                        <h3>${repo.name.replaceAll("-", " ")}</h3>
+                        <p>${repo.description || "No description added yet."}</p>
+
+                        <p class="github-meta">
+                            ${repo.language ? `<span>${repo.language}</span>` : ""}
+                            <span>⭐ ${repo.stargazers_count}</span>
+                            <span>Updated: ${new Date(repo.updated_at).toLocaleDateString()}</span>
+                        </p>
+
+                        <a href="${repo.html_url}" target="_blank" class="modern-btn">View on GitHub</a>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+
+        if (container.innerHTML.trim() === "") {
+            container.innerHTML = `<p style="color:#ccc;">No public repositories found.</p>`;
+        }
+
+    } catch (error) {
+        container.innerHTML = `
+            <p style="color:#ccc;">GitHub projects could not be loaded right now.</p>
+        `;
+        console.error(error);
+    }
+}
+
+loadGitHubProjects();
